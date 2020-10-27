@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SimpleSelectedItems:
     m_Keys:
+    - Assets/Scripts/Classes/NetworkIO.cs
     - Assets/Scripts/Classes/Packet.cs
     - Assets/Scripts/Comfort/Login/LoginCreatureComforts.cs
     - Assets/Scripts/MasterGameManager.cs
     - Assets/Scripts/NetworkingManager.cs
     - 
-    m_Values: 0000000000
+    m_Values: 000000000000
   RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 

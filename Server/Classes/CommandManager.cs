@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.SqlServer.Server;
 using server.Classes;
 using Server.Classes;
 
@@ -90,6 +92,9 @@ namespace server.Classes
 							IO.ReadConfig();
 						}
 						break;
+					case "stop":
+						Server.Stop();
+						break;
 					default:
 						Server.WriteLine("Unknown command: " + command.ToLower());
 						break;
@@ -100,5 +105,6 @@ namespace server.Classes
 			currentCommand = "";
 			newCommand = true;
 		}
+		
 	}
 }

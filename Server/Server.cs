@@ -32,14 +32,21 @@ namespace server
 		public static Config config;
 		public static CommandManager cManager;
 
+		public static bool online = true;
+
 		public static void Main(string[] args)
 		{
-			cManager = new CommandManager();
 			GetConfig();
+			if (config.enableCommands)
+			{
+				cManager = new CommandManager();
+				Server.WriteLine("Command Input enabled");
+			}
 			manager = new NetworkingManager();
 			manager.StartListening();
 			manager.StartAsyncRecieve();
-			while (true)
+			
+			while (online)
 			{
 				if(manager.toBeHandledClient.Count > 0)
 				{
@@ -55,6 +62,19 @@ namespace server
 					cManager.AddKey(key.KeyChar);
 				}
 			}
+			Server.WriteLine("Command Input disabled");
+
+			manager.StopListening();
+
+			Server.WriteLine("Saving AuthTable");
+			IO.StoreAuthTable(manager.table);
+			Server.WriteLine("Saved AuthTable");
+
+			Server.WriteLine("Saving Config");
+			IO.StoreConfig();
+			Server.WriteLine("Saved Config");
+
+			Server.WriteLine("Server stopped");
 		}
 
 		public static void GetConfig()
@@ -70,10 +90,18 @@ namespace server
 			}
 		}
 
+		public static void Stop()
+		{
+			online = false;
+		}
+
 		public static void WriteLine(object toPrint)
 		{
 			Console.WriteLine("[" + DateTime.UtcNow + "] " + toPrint.ToString());
-			cManager.newCommand = true;
+			if(cManager != null)
+			{
+				cManager.newCommand = true;
+			}
 		}
 	}
 }

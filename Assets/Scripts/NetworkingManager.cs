@@ -157,14 +157,14 @@ public class NetworkingManager : MonoBehaviour
 		{
 			while (client.Connected)
 			{
-				toWriteLength = netIO.toWrite.Count;
 				if (netIO.toDo.Count > 0)
 				{
 					if (netIO.toDo.IndexOf(NetworkIO.Operation.Write) == 0)
 					{
-						sendMessageAsync(netIO.toWrite[0], client);
+						sendMessageAsync(netIO.toWrite, client);
 						netIO.toDo.RemoveAt(0);
 						//netIO.toWrite.RemoveAt(0);
+						netIO.toWrite = new Packet(false);
 						Debug.Log("Sent Packet to " + ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
 					}
 				}
@@ -209,7 +209,7 @@ public class NetworkingManager : MonoBehaviour
 						toSend.header = Packet.Header.Auth;
 						toSend.uuid = profile.uuid;
 						netIO.toDo.Add(NetworkIO.Operation.Write);
-						netIO.toWrite.Add(toSend);
+						netIO.toWrite = toSend;
 						toBeHandledPackets.Remove(packet);
 						lastAttemptedUsername = profile.username;
 						lastAttemptedPassword = profile.password;

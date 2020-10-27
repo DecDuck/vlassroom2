@@ -24,6 +24,10 @@ public class MasterGameManager : MonoBehaviour
 	public TMP_InputField username;
 	public TMP_InputField password;
 
+	public int packetUpdate = 700;
+
+	private float packetTimer;
+
 	public void Start()
 	{
 		DontDestroyOnLoad(this.gameObject);
@@ -31,7 +35,16 @@ public class MasterGameManager : MonoBehaviour
 	}
 	public void FixedUpdate()
 	{
-		if(manager.toBeHandledPackets.Count > 0)
+		packetTimer += Time.deltaTime;
+		if(packetTimer > packetUpdate)
+		{
+			PacketUpdate();
+			packetTimer = 0.0f;
+		}
+	}
+	public void PacketUpdate()
+	{
+		if (manager.toBeHandledPackets.Count > 0)
 		{
 			manager.HandlePacket(manager.toBeHandledPackets[0]);
 		}

@@ -26,6 +26,8 @@ namespace server
 		public Dictionary<string, Profile> activePeople = new Dictionary<string, Profile>();
 		public List<Packet> toBeHandledPackets = new List<Packet>();
 
+		public bool shuttingDown = false;
+
 		public NetworkIO netIO;
 
 		public async Task sendMessageAsync(Packet packet, TcpClient client)
@@ -98,6 +100,13 @@ namespace server
 			tcpListener.Start();
 			Server.WriteLine("Started Listening");
 		}
+		public void StopListening()
+		{
+			shuttingDown = true;
+			Server.WriteLine("Stopping recieving");
+			tcpListener.Stop();
+			Server.WriteLine("Stopped recieving");
+		}
 
 		public void GetAuth()
 		{
@@ -118,11 +127,16 @@ namespace server
 		public void BackgroundRead(Profile pclient)
 		{
 			TcpClient client = pclient.client;
-			Server.WriteLine("Started (Background Packet Recieve) Thread");
+			Server.WriteLine("Started (Background Packet Read) Thread");
 			try
 			{
 				while (client.Connected)
 				{
+					if (shuttingDown)
+					{
+						Server.WriteLine("Stopped (Background Packet Read) Thread");
+						return;
+					}
 					if (!netIO.toDo[pclient.uuid].Contains(NetworkIO.Operation.Read))
 					{
 						netIO.toDo[pclient.uuid].Add(NetworkIO.Operation.Read);
@@ -146,7 +160,7 @@ namespace server
 						}
 					}
 				}
-				Server.WriteLine("Client Disconnected (Background Packet Recieve) Thread");
+				Server.WriteLine("Client Disconnected (Background Packet Read) Thread");
 			}
 			catch (Exception e)
 			{
@@ -162,6 +176,11 @@ namespace server
 			{
 				while (client.Connected)
 				{
+					if (shuttingDown)
+					{
+						Server.WriteLine("Stopped (Background Packet Write) Thread");
+						return;
+					}
 					if (netIO.toDo[pclient.uuid].Count > 0)
 					{
 						//Server.WriteLine(netIO.toDo[pclient.uuid].ToArray().ToString());
@@ -259,20 +278,33 @@ namespace server
 
 		public void Recieve()
 		{
-			while (true)
+			while (!shuttingDown)
 			{
-				TcpClient handledClient = tcpListener.AcceptTcpClient();
-				Server.WriteLine("Client Connected");
-				Profile profile = new Profile();
-				profile.Setup();
-				profile.uuid = (DateTime.Now.ToString() + new Random().Next(1000,9999).ToString());
-				profile.client = handledClient;
-				netIO.toDo.Add(profile.uuid, new List<NetworkIO.Operation>());
-				new Thread(() => BackgroundRead(profile)).Start();
-				new Thread(() => BackgroundWrite(profile)).Start();
-				toBeHandledClient.Add(profile);
+				if (shuttingDown)
+				{
+					return;
+				}
+				try
+				{
+					TcpClient handledClient = tcpListener.AcceptTcpClient();
+					Server.WriteLine("Client Connected");
+					Profile profile = new Profile();
+					profile.Setup();
+					profile.uuid = (DateTime.Now.ToString() + new Random().Next(1000, 9999).ToString());
+					profile.client = handledClient;
+					netIO.toDo.Add(profile.uuid, new List<NetworkIO.Operation>());
+					new Thread(() => BackgroundRead(profile)).Start();
+					new Thread(() => BackgroundWrite(profile)).Start();
+					toBeHandledClient.Add(profile);
+				}
+				catch(Exception e)
+				{
+					return;
+				}
+				
 				//Server.WriteLine("Client Connect Info: " + JsonConvert.SerializeObject(profile));
 			}
+			Server.WriteLine("Stopped Background Recieve");
 		}
 
 		public void HandleClient(Profile pclient)

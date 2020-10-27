@@ -17,6 +17,6 @@ namespace Server.Classes
 
 		public List<Operation> toDo = new List<Operation>();
 
-		public List<Packet> toWrite = new List<Packet>();
+		public Packet toWrite;
 	}
 }

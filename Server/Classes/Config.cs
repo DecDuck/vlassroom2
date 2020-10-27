@@ -8,6 +8,7 @@ namespace server.Classes
 {
 	class Config
 	{
-		public string storeFile = "/auth/server.vlassroom";
+		public string storeFile = "/auth.json";
+		public bool enableCommands = true;
 	}
 }
