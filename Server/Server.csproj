@@ -54,6 +54,7 @@
     <Compile Include="Classes\Avatar.cs" />
     <Compile Include="Classes\ByteAssembler.cs" />
     <Compile Include="Classes\Classroom.cs" />
+    <Compile Include="Classes\CommandManager.cs" />
     <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\CurrentAction.cs" />
     <Compile Include="Classes\IO.cs" />

@@ -41,5 +41,10 @@ namespace server.Classes
 			Server.WriteLine("Loaded Config");
 			return JsonConvert.DeserializeObject<Config>(File.ReadAllText(Directory.GetCurrentDirectory() + "/config.json"));
 		}
+
+		internal static void StoreConfig(object v)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

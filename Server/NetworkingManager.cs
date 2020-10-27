@@ -105,6 +105,7 @@ namespace server
 			{
 				Server.WriteLine("Attempting to get AuthTable");
 				table = IO.ReadAuthTable();
+				Server.WriteLine("AuthTable read. Contents: " + JsonConvert.SerializeObject(table));
 			}
 			else
 			{
@@ -221,11 +222,13 @@ namespace server
 						}
 						else
 						{
+							Server.WriteLine("Password is not correct " + packet.password);
 							Authenticate(activePeople[packet.uuid]);
 						}
 					}
 					else
 					{
+						Server.WriteLine("Username does not have an entry " + packet.username);
 						Authenticate(activePeople[packet.uuid]);
 					}
 				}

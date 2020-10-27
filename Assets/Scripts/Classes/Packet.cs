@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Server.Classes
 {
+	[Serializable]
 	public class Packet
 	{
 		public bool notConnected = false;

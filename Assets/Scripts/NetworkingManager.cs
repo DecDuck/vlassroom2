@@ -20,9 +20,18 @@ public class NetworkingManager : MonoBehaviour
     public int port = 40705;
     public string hostname = "127.0.0.1";
 
+	[SerializeField]
 	public List<Packet> toBeHandledPackets = new List<Packet>();
 
+	//For Debugging purposes
+	public int toWriteLength;
+
 	public NetworkIO netIO;
+
+	[SerializeField]
+	private string lastAttemptedUsername = "username";
+	[SerializeField]
+	private string lastAttemptedPassword = "password";
 
     public void Connect()
     {
@@ -70,12 +79,12 @@ public class NetworkingManager : MonoBehaviour
 			//Server.WriteLine("iteration");
 			byte[] readingBytes = new byte[8];
 			int usingInt = client.GetStream().Read(readingBytes, 0, 8);
-			Debug.LogError(usingInt + ": Using Int");
+			//Debug.LogError(usingInt + ": Using Int");
 			assembler.AddByteArray(readingBytes, usingInt);
 		}
 		byte[] byteMessageLength = assembler.Create();
 
-		Debug.LogError(byteMessageLength.Length);
+		//Debug.LogError(byteMessageLength.Length);
 
 		Int64 messageLength = (Int64)BitConverter.ToInt64(byteMessageLength, 0);
 
@@ -148,12 +157,14 @@ public class NetworkingManager : MonoBehaviour
 		{
 			while (client.Connected)
 			{
+				toWriteLength = netIO.toWrite.Count;
 				if (netIO.toDo.Count > 0)
 				{
 					if (netIO.toDo.IndexOf(NetworkIO.Operation.Write) == 0)
 					{
 						sendMessageAsync(netIO.toWrite[0], client);
 						netIO.toDo.RemoveAt(0);
+						//netIO.toWrite.RemoveAt(0);
 						Debug.Log("Sent Packet to " + ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
 					}
 				}
@@ -166,54 +177,47 @@ public class NetworkingManager : MonoBehaviour
 			Debug.Log(netIO.toDo.Count);
 		}
 	}
-	public void StartHandlePacketAsync(Packet packet)
+
+	public void HandlePacketAsync(Packet packet)
 	{
-		new Thread(() => HandlePacket(packet)).Start();
+		new Thread(() => HandlePacket(packet));
 	}
 
-	//Runs in new Thread. Don't worry about creating loops.
-	public void HandlePacket(Packet packet)
+	//Handles packets
+	public bool HandlePacket(Packet packet)
 	{
-		try
+		if (packet.header == Packet.Header.Request)
 		{
-			if (packet.header == Packet.Header.Request)
+			switch (packet.request.request)
 			{
-				switch (packet.request.request)
-				{
-					//Server should not send this
-					case Request.RequestType.CreateClassroom:
-						break;
-					//Server should not send this
-					case Request.RequestType.JoinClassroom:
-						break;
-					//Server should not send this
-					case Request.RequestType.LeaveClassroom:
-						break;
-					case Request.RequestType.AuthRequest:
-						while (profile.username != "" && profile.password != "")
-						{
-							Packet toSend = new Packet();
-							profile.uuid = packet.uuid;
-							toSend.username = profile.username;
-							toSend.password = profile.password;
-							toSend.header = Packet.Header.Auth;
-							toSend.uuid = profile.uuid;
-							netIO.toDo.Add(NetworkIO.Operation.Write);
-							while (netIO.toDo[0] != NetworkIO.Operation.Write)
-							{
-
-							}
-							sendMessageAsync(toSend, profile.client);
-							netIO.toDo.RemoveAt(0);
-							toBeHandledPackets.Remove(packet);
-						}
-						break;
-				}
+				//Server should not send this
+				case Request.RequestType.CreateClassroom:
+					break;
+				//Server should not send this
+				case Request.RequestType.JoinClassroom:
+					break;
+				//Server should not send this
+				case Request.RequestType.LeaveClassroom:
+					break;
+				case Request.RequestType.AuthRequest:
+					if (profile.username != lastAttemptedUsername || profile.password != lastAttemptedPassword)
+					{
+						Packet toSend = new Packet();
+						profile.uuid = packet.uuid;
+						toSend.username = profile.username;
+						toSend.password = profile.password;
+						toSend.header = Packet.Header.Auth;
+						toSend.uuid = profile.uuid;
+						netIO.toDo.Add(NetworkIO.Operation.Write);
+						netIO.toWrite.Add(toSend);
+						toBeHandledPackets.Remove(packet);
+						lastAttemptedUsername = profile.username;
+						lastAttemptedPassword = profile.password;
+						return true;
+					}
+					break;
 			}
-		}catch(Exception e)
-		{
-			Debug.LogWarning(e.ToString());
 		}
-		
+		return false;
 	}
 }

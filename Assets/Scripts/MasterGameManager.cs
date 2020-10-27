@@ -29,11 +29,11 @@ public class MasterGameManager : MonoBehaviour
 		DontDestroyOnLoad(this.gameObject);
 		manager.Connect();
 	}
-	public void Update()
+	public void FixedUpdate()
 	{
 		if(manager.toBeHandledPackets.Count > 0)
 		{
-			manager.StartHandlePacketAsync(manager.toBeHandledPackets[0]);
+			manager.HandlePacket(manager.toBeHandledPackets[0]);
 		}
 	}
 

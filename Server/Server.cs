@@ -22,6 +22,7 @@ using Newtonsoft.Json.Converters;
 using server;
 using server.Classes;
 using System.Net.Mail;
+using Server.Classes;
 
 namespace server
 {
@@ -29,9 +30,11 @@ namespace server
 	{
 		public static NetworkingManager manager;
 		public static Config config;
+		public static CommandManager cManager;
 
 		public static void Main(string[] args)
 		{
+			cManager = new CommandManager();
 			GetConfig();
 			manager = new NetworkingManager();
 			manager.StartListening();
@@ -45,6 +48,11 @@ namespace server
 				if(manager.toBeHandledPackets.Count > 0)
 				{
 					manager.HandlePacket(manager.toBeHandledPackets[0]);
+				}
+				if (Console.KeyAvailable)
+				{
+					ConsoleKeyInfo key = Console.ReadKey(true);
+					cManager.AddKey(key.KeyChar);
 				}
 			}
 		}
@@ -65,6 +73,7 @@ namespace server
 		public static void WriteLine(object toPrint)
 		{
 			Console.WriteLine("[" + DateTime.UtcNow + "] " + toPrint.ToString());
+			cManager.newCommand = true;
 		}
 	}
 }
