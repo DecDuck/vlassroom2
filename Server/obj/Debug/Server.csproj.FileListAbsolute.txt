@@ -1,0 +1,12 @@
+C:\Users\decla\Documents\Vlassroom 2\Server\bin\Debug\Server.exe.config
+C:\Users\decla\Documents\Vlassroom 2\Server\bin\Debug\Server.exe
+C:\Users\decla\Documents\Vlassroom 2\Server\bin\Debug\Server.pdb
+C:\Users\decla\Documents\Vlassroom 2\Server\obj\Debug\Server.csprojAssemblyReference.cache
+C:\Users\decla\Documents\Vlassroom 2\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\Users\decla\Documents\Vlassroom 2\Server\obj\Debug\Server.exe
+C:\Users\decla\Documents\Vlassroom 2\Server\obj\Debug\Server.pdb
+C:\Users\decla\Documents\Vlassroom 2\Server\bin\Debug\Vlassroom Library.dll
+C:\Users\decla\Documents\Vlassroom 2\Server\bin\Debug\Vlassroom Library.pdb
+C:\Users\decla\Documents\Vlassroom 2\Server\obj\Debug\Server.csproj.CopyComplete
+C:\Users\decla\Documents\Vlassroom 2\Server\bin\Debug\Newtonsoft.Json.dll
+C:\Users\decla\Documents\Vlassroom 2\Server\bin\Debug\Vlassroom Library.dll.config
