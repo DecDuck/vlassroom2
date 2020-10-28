@@ -14,9 +14,9 @@ namespace Server.Classes
 		public enum Header
 		{
 			DefaultDONOTUSE,
-			Auth,
 			Position,
 			Request,
+			Answer,
 			Server
 		}
 		//User packet
@@ -32,6 +32,8 @@ namespace Server.Classes
 
 		//Server packet
 		public List<Profile> profile;
+
+		public Permissions.Permission permission;
 
 		public Packet()
 		{

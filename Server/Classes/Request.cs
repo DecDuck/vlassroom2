@@ -13,7 +13,7 @@ namespace Server.Classes
 			CreateClassroom,
 			JoinClassroom,
 			LeaveClassroom,
-			AuthRequest
+			Auth
 		}
 		public RequestType request;
 	}

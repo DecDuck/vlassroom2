@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Server.Classes
 {
-	[Serializable]
 	public class Packet
 	{
 		public bool notConnected = false;
@@ -15,9 +14,9 @@ namespace Server.Classes
 		public enum Header
 		{
 			DefaultDONOTUSE,
-			Auth,
 			Position,
 			Request,
+			Answer,
 			Server
 		}
 		//User packet
@@ -30,6 +29,8 @@ namespace Server.Classes
 		public Request request;
 
 		public string uuid;
+
+		public Permissions.Permission permission;
 
 		//Server packet
 		public List<Profile> profile;

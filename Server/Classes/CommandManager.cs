@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.SqlServer.Server;
@@ -67,7 +68,8 @@ namespace server.Classes
 					case "addauth":
 						string username = args[1];
 						string password = Server.manager.GetHashString(args[2]);
-						Server.manager.table.AddToTable(username, password);
+						int permission = int.Parse(args[3]);
+						Server.manager.table.AddToTable(username, password, permission);
 						Server.WriteLine("Added " + username + " to AuthTable");
 						break;
 					case "save":

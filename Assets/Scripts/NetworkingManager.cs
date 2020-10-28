@@ -199,22 +199,41 @@ public class NetworkingManager : MonoBehaviour
 				//Server should not send this
 				case Request.RequestType.LeaveClassroom:
 					break;
-				case Request.RequestType.AuthRequest:
-					if (profile.username != lastAttemptedUsername || profile.password != lastAttemptedPassword)
+				case Request.RequestType.Auth:
+					if(lastAttemptedPassword != profile.password || lastAttemptedUsername != profile.username)
 					{
 						Packet toSend = new Packet();
 						profile.uuid = packet.uuid;
 						toSend.username = profile.username;
 						toSend.password = profile.password;
-						toSend.header = Packet.Header.Auth;
+						toSend.header = Packet.Header.Answer;
+						toSend.request.request = Request.RequestType.Auth;
 						toSend.uuid = profile.uuid;
 						netIO.toDo.Add(NetworkIO.Operation.Write);
 						netIO.toWrite = toSend;
 						toBeHandledPackets.Remove(packet);
 						lastAttemptedUsername = profile.username;
 						lastAttemptedPassword = profile.password;
-						return true;
 					}
+					break;
+			}
+		}
+		else if(packet.header == Packet.Header.Answer)
+		{
+			switch (packet.request.request)
+			{
+				case Request.RequestType.Auth:
+					profile.uuid = packet.uuid;
+					profile.username = packet.username;
+					profile.hashedPassword = packet.password;
+					profile.permissions = packet.permission;
+					profile.loggedIn = true;
+					break;
+				case Request.RequestType.CreateClassroom:
+					break;
+				case Request.RequestType.JoinClassroom:
+					break;
+				case Request.RequestType.LeaveClassroom:
 					break;
 			}
 		}

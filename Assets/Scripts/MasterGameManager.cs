@@ -24,9 +24,9 @@ public class MasterGameManager : MonoBehaviour
 	public TMP_InputField username;
 	public TMP_InputField password;
 
-	public int packetUpdate = 700;
+	public int packetUpdate = 1;
 
-	private float packetTimer;
+	public float packetTimer;
 
 	public void Start()
 	{

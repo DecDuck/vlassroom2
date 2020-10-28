@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace server.Classes
 {
-	[Serializable]
 	public class Profile
 	{
 		public string username;
 		public string uuid;
+
+		public string classroomId;
 
 		public string hashedPassword;
 
@@ -26,6 +27,17 @@ namespace server.Classes
 		public Transform transform;
 
 		public CurrentAction action;
+
+		public bool writeThreadStarted = false;
+		public bool readThreadStarted = false;
+
+		public bool loggedIn = false;
+		public int waitTime = 200;
+
+		public bool beenSetup
+		{
+			get { return writeThreadStarted && readThreadStarted; }
+		}
 
 		public void Setup()
 		{

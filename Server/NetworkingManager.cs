@@ -19,6 +19,16 @@ namespace server
 {
 	class NetworkingManager
 	{
+		/*
+		 * How to send a message:
+		 * Create a new packet object (Packet packet = new Packet())
+		 * Set values you need for the packet. e.g. requesting auth
+		 * Set the packet's uuid to the uuid of the Profile object you are messaging
+		 * Add the packet to the netIO.toWrite list, using their uuid as a key
+		 * Add a write operation to netIO.toDo, using their uuid as a key
+		 * The rest will be handled for you!
+		 */
+
 		public AuthTable table;
 
 		public TcpListener tcpListener = new TcpListener(40705);
@@ -188,7 +198,7 @@ namespace server
 						if (netIO.toDo[pclient.uuid].IndexOf(NetworkIO.Operation.Write) == 0)
 						{
 							//Server.WriteLine("Sending packet...");
-							sendMessageAsync(netIO.toWrite[0], client);
+							sendMessageAsync(netIO.toWrite[pclient.uuid][0], client);
 							netIO.toDo[pclient.uuid].RemoveAt(0);
 							Server.WriteLine("Sent Packet to " + ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
 						}
@@ -203,13 +213,25 @@ namespace server
 
 		}
 
+		public void NotifyLogin(Profile profile)
+		{
+			Packet packet = new Packet();
+			packet.header = Packet.Header.Answer;
+			packet.request.request = Request.RequestType.Auth;
+			packet.username = profile.username;
+			packet.password = profile.hashedPassword;
+			packet.permission = profile.permissions;
+			netIO.toWrite[profile.uuid].Add(packet);
+			netIO.toDo[profile.uuid].Add(NetworkIO.Operation.Write);
+		}
+
 		public void HandlePacket(Packet packet)
 		{
 			if(packet == null)
 			{
 				return;
 			}
-			if (packet.header == Packet.Header.Request)
+			if (packet.header == Packet.Header.Answer)
 			{
 				switch (packet.request.request)
 				{
@@ -222,36 +244,51 @@ namespace server
 					//Server should not send this
 					case Request.RequestType.LeaveClassroom:
 						break;
-					case Request.RequestType.AuthRequest:
+					case Request.RequestType.Auth:
+						Server.WriteLine("Recieved Auth Packet");
+						if (activePeople[packet.uuid] != null)
+						{
+							if (table.authTable.ContainsKey(packet.username))
+							{
+								if (table.authTable[packet.username] == GetHashString(packet.password))
+								{
+									activePeople[packet.uuid].username = packet.username;
+									activePeople[packet.uuid].password = packet.password;
+									activePeople[packet.uuid].loggedIn = true;
+									activePeople[packet.uuid].permissions = table.perTable[packet.username];
+									Server.WriteLine(packet.username + " logged in");
+
+									NotifyLogin(activePeople[packet.uuid]);
+								}
+								else
+								{
+									Server.WriteLine("Password is not correct " + packet.password);
+									Authenticate(activePeople[packet.uuid]);
+								}
+							}
+							else
+							{
+								Server.WriteLine("Username does not have an entry " + packet.username);
+								Authenticate(activePeople[packet.uuid]);
+							}
+						}
+						toBeHandledPackets.Remove(packet);
 						break;
 				}
 			}
-			else if (packet.header == Packet.Header.Auth)
+			else if(packet.header == Packet.Header.Request)
 			{
-				Server.WriteLine("Recieved Auth Packet");
-				if(activePeople[packet.uuid] != null)
+				switch (packet.request.request)
 				{
-					if (table.authTable.ContainsKey(packet.username))
-					{
-						if(table.authTable[packet.username] == GetHashString(packet.password))
-						{
-							activePeople[packet.uuid].username = packet.username;
-							activePeople[packet.uuid].password = packet.password;
-							activePeople[packet.uuid].loggedIn = true;
-						}
-						else
-						{
-							Server.WriteLine("Password is not correct " + packet.password);
-							Authenticate(activePeople[packet.uuid]);
-						}
-					}
-					else
-					{
-						Server.WriteLine("Username does not have an entry " + packet.username);
-						Authenticate(activePeople[packet.uuid]);
-					}
+					case Request.RequestType.CreateClassroom:
+						break;
+					case Request.RequestType.JoinClassroom:
+						break;
+					case Request.RequestType.LeaveClassroom:
+						break;
+					case Request.RequestType.Auth:
+						break;
 				}
-				toBeHandledPackets.Remove(packet);
 			}
 		}
 		public byte[] GetHash(string inputString)
@@ -276,6 +313,13 @@ namespace server
 			new Thread(() => Recieve()).Start();
 		}
 
+		public double ConvertToUnixTimestamp(DateTime date)
+		{
+			DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+			TimeSpan diff = date.ToUniversalTime() - origin;
+			return Math.Floor(diff.TotalSeconds);
+		}
+
 		public void Recieve()
 		{
 			while (!shuttingDown)
@@ -290,7 +334,7 @@ namespace server
 					Server.WriteLine("Client Connected");
 					Profile profile = new Profile();
 					profile.Setup();
-					profile.uuid = (DateTime.Now.ToString() + new Random().Next(1000, 9999).ToString());
+					profile.uuid = (ConvertToUnixTimestamp(DateTime.Now) + new Random().Next(1000, 9999).ToString());
 					profile.client = handledClient;
 					netIO.toDo.Add(profile.uuid, new List<NetworkIO.Operation>());
 					new Thread(() => BackgroundRead(profile)).Start();
@@ -323,9 +367,9 @@ namespace server
 			//Server.WriteLine("Requesting Auth from " + ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
 			Packet authRequest = new Packet();
 			authRequest.header = Packet.Header.Request;
+			authRequest.request.request = Request.RequestType.Auth;
 			authRequest.uuid = pclient.uuid;
-			authRequest.request.request = Request.RequestType.AuthRequest;
-			netIO.toWrite.Add(authRequest);
+			netIO.toWrite[pclient.uuid].Add(authRequest);
 			netIO.toDo[pclient.uuid].Add(NetworkIO.Operation.Write);
 			if (!activePeople.Keys.Contains(pclient.uuid))
 			{

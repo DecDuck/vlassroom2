@@ -12,6 +12,8 @@ namespace server.Classes
 		public string username;
 		public string uuid;
 
+		public string classroomId;
+
 		public string hashedPassword;
 
 		public string password;

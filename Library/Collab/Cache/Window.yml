@@ -14,13 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SimpleSelectedItems:
     m_Keys:
+    - Assets/Scenes/Account.unity
+    - Assets/Scenes/AdminScreens.meta
+    - Assets/Scenes/AdminScreens/Base.unity
+    - Assets/Scenes/AdminScreens/Base.unity.meta
+    - Assets/Scenes/AdminScreens/base.unity
+    - Assets/Scenes/AdminScreens/base.unity.meta
+    - Assets/Scenes/ClassroomDefault.unity
+    - Assets/Scenes/ClassroomDefault.unity.meta
+    - Assets/Scenes/ClassroomOutdoors.unity
+    - Assets/Scenes/ClassroomOutdoors.unity.meta
     - Assets/Scripts/Classes/NetworkIO.cs
     - Assets/Scripts/Classes/Packet.cs
+    - Assets/Scripts/Classes/Profile.cs
+    - Assets/Scripts/Classes/Request.cs
     - Assets/Scripts/Comfort/Login/LoginCreatureComforts.cs
     - Assets/Scripts/MasterGameManager.cs
     - Assets/Scripts/NetworkingManager.cs
     - 
-    m_Values: 000000000000
+    m_Values: 000000000000000000000000000000000000
   RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 
