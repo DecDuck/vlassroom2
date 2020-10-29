@@ -14,25 +14,391 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SimpleSelectedItems:
     m_Keys:
+    - Assets/Audio.meta
+    - Assets/Audio/menumusic.wav
+    - Assets/Audio/menumusic.wav.meta
+    - Assets/JsonDotNet.meta
     - Assets/Scenes/Account.unity
-    - Assets/Scenes/AdminScreens.meta
-    - Assets/Scenes/AdminScreens/Base.unity
-    - Assets/Scenes/AdminScreens/Base.unity.meta
-    - Assets/Scenes/AdminScreens/base.unity
-    - Assets/Scenes/AdminScreens/base.unity.meta
+    - Assets/Scenes/Classroom.unity
+    - Assets/Scenes/Classroom.unity.meta
     - Assets/Scenes/ClassroomDefault.unity
     - Assets/Scenes/ClassroomDefault.unity.meta
     - Assets/Scenes/ClassroomOutdoors.unity
     - Assets/Scenes/ClassroomOutdoors.unity.meta
+    - Assets/Scripts/Auth.meta
     - Assets/Scripts/Classes/NetworkIO.cs
     - Assets/Scripts/Classes/Packet.cs
     - Assets/Scripts/Classes/Profile.cs
     - Assets/Scripts/Classes/Request.cs
     - Assets/Scripts/Comfort/Login/LoginCreatureComforts.cs
+    - Assets/Scripts/ConfigControllers.meta
+    - Assets/Scripts/ConfigControllers/PrincipalConfigController.cs
+    - Assets/Scripts/ConfigControllers/PrincipalConfigController.cs.meta
+    - Assets/Scripts/ConfigControllers/StudentConfigController.cs
+    - Assets/Scripts/ConfigControllers/StudentConfigController.cs.meta
+    - Assets/Scripts/ConfigControllers/TeacherConfigController.cs
+    - Assets/Scripts/ConfigControllers/TeacherConfigController.cs.meta
     - Assets/Scripts/MasterGameManager.cs
+    - Assets/Scripts/Networking.meta
     - Assets/Scripts/NetworkingManager.cs
+    - Assets/Scripts/Player.meta
+    - Assets/Scripts/Room.meta
+    - Assets/Tom's Terrain Tools.meta
+    - Assets/Tom's Terrain Tools/2DTools.meta
+    - Assets/Tom's Terrain Tools/2DTools/Editor.meta
+    - Assets/Tom's Terrain Tools/2DTools/Editor/TTTools2D.cs
+    - Assets/Tom's Terrain Tools/2DTools/Editor/TTTools2D.cs.meta
+    - Assets/Tom's Terrain Tools/2DTools/Materials.meta
+    - Assets/Tom's Terrain Tools/2DTools/Materials/PhysicMaterials.meta
+    - Assets/Tom's Terrain Tools/2DTools/Materials/PhysicMaterials/Sticky.physicsMaterial2D
+    - Assets/Tom's Terrain Tools/2DTools/Materials/PhysicMaterials/Sticky.physicsMaterial2D.meta
+    - Assets/Tom's Terrain Tools/2DTools/Scenes.meta
+    - Assets/Tom's Terrain Tools/2DTools/Scenes/scene_2DTools_Demo1.unity
+    - Assets/Tom's Terrain Tools/2DTools/Scenes/scene_2DTools_Demo1.unity.meta
+    - Assets/Tom's Terrain Tools/2DTools/Scenes/scene_2DTools_Demo1Settings.lighting
+    - Assets/Tom's Terrain Tools/2DTools/Scenes/scene_2DTools_Demo1Settings.lighting.meta
+    - Assets/Tom's Terrain Tools/2DTools/Scripts.meta
+    - Assets/Tom's Terrain Tools/2DTools/Scripts/Camera2DFollow.cs
+    - Assets/Tom's Terrain Tools/2DTools/Scripts/Camera2DFollow.cs.meta
+    - Assets/Tom's Terrain Tools/2DTools/Scripts/CircleMoverSample.cs
+    - Assets/Tom's Terrain Tools/2DTools/Scripts/CircleMoverSample.cs.meta
+    - Assets/Tom's Terrain Tools/2DTools/Sprites.meta
+    - Assets/Tom's Terrain Tools/2DTools/Sprites/circle2D.png
+    - Assets/Tom's Terrain Tools/2DTools/Sprites/circle2D.png.meta
+    - Assets/Tom's Terrain Tools/Editor.meta
+    - Assets/Tom's Terrain Tools/Editor/ClearWaterLevel.cs
+    - Assets/Tom's Terrain Tools/Editor/ClearWaterLevel.cs.meta
+    - Assets/Tom's Terrain Tools/Editor/IncrementalSplatmapping.cs
+    - Assets/Tom's Terrain Tools/Editor/IncrementalSplatmapping.cs.meta
+    - Assets/Tom's Terrain Tools/Editor/PlaceOnTerrain.cs
+    - Assets/Tom's Terrain Tools/Editor/PlaceOnTerrain.cs.meta
+    - Assets/Tom's Terrain Tools/Editor/RandomObjectMap.cs
+    - Assets/Tom's Terrain Tools/Editor/RandomObjectMap.cs.meta
+    - Assets/Tom's Terrain Tools/Editor/SplatMapGenerator.cs
+    - Assets/Tom's Terrain Tools/Editor/SplatMapGenerator.cs.meta
+    - Assets/Tom's Terrain Tools/Editor/TerrainTools.cs
+    - Assets/Tom's Terrain Tools/Editor/TerrainTools.cs.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1549969568-grassmap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1549969568-grassmap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1549969568-heightmap.raw
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1549969568-heightmap.raw.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1549969568-splatmap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1549969568-splatmap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1549969568-treemap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1549969568-treemap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1880092298-grassmap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1880092298-grassmap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1880092298-heightmap.raw
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1880092298-heightmap.raw.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1880092298-splatmap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1880092298-splatmap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1880092298-treemap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-1880092298-treemap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-2124401101-grassmap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-2124401101-grassmap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-2124401101-heightmap.raw
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-2124401101-heightmap.raw.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-2124401101-splatmap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-2124401101-splatmap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-2124401101-treemap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-2124401101-treemap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-297665599-grassmap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-297665599-grassmap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-297665599-heightmap.raw
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-297665599-heightmap.raw.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-297665599-splatmap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-297665599-splatmap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-297665599-treemap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain-297665599-treemap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain8km-2104080048-grassmap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain8km-2104080048-grassmap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain8km-2104080048-heightmap.raw
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain8km-2104080048-heightmap.raw.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain8km-2104080048-splatmap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain8km-2104080048-splatmap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain8km-2104080048-treemap.tiff
+    - Assets/Tom's Terrain Tools/Example AutoMagic/Terrain8km-2104080048-treemap.tiff.meta
+    - Assets/Tom's Terrain Tools/Example Data.meta
+    - Assets/Tom's Terrain Tools/Example Data/1-bushmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/1-bushmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/1-grassmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/1-grassmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/1-heightmap.raw
+    - Assets/Tom's Terrain Tools/Example Data/1-heightmap.raw.meta
+    - Assets/Tom's Terrain Tools/Example Data/1-spawnmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/1-spawnmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/1-splatmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/1-splatmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/1-treemap.tif
+    - Assets/Tom's Terrain Tools/Example Data/1-treemap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/2-bushmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/2-bushmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/2-grassmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/2-grassmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/2-heightmap.raw
+    - Assets/Tom's Terrain Tools/Example Data/2-heightmap.raw.meta
+    - Assets/Tom's Terrain Tools/Example Data/2-spawnmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/2-spawnmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/2-splatmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/2-splatmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/2-treemap.tif
+    - Assets/Tom's Terrain Tools/Example Data/2-treemap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/3-bushmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/3-bushmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/3-grassmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/3-grassmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/3-heightmap.raw
+    - Assets/Tom's Terrain Tools/Example Data/3-heightmap.raw.meta
+    - Assets/Tom's Terrain Tools/Example Data/3-roads.png
+    - Assets/Tom's Terrain Tools/Example Data/3-roads.png.meta
+    - Assets/Tom's Terrain Tools/Example Data/3-spawnmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/3-spawnmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/3-splatmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/3-splatmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/3-treemap.tif
+    - Assets/Tom's Terrain Tools/Example Data/3-treemap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/7-bushmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/7-bushmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/7-grassmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/7-grassmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/7-heightmap.raw
+    - Assets/Tom's Terrain Tools/Example Data/7-heightmap.raw.meta
+    - Assets/Tom's Terrain Tools/Example Data/7-splatmap.tif
+    - Assets/Tom's Terrain Tools/Example Data/7-splatmap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/7-treemap.tif
+    - Assets/Tom's Terrain Tools/Example Data/7-treemap.tif.meta
+    - Assets/Tom's Terrain Tools/Example Data/Example_sliceMap.png
+    - Assets/Tom's Terrain Tools/Example Data/Example_sliceMap.png.meta
+    - Assets/Tom's Terrain Tools/Example Data/Materials.meta
+    - Assets/Tom's Terrain Tools/Example Data/Materials/TTTExampleSkyBox.mat
+    - Assets/Tom's Terrain Tools/Example Data/Materials/TTTExampleSkyBox.mat.meta
+    - Assets/Tom's Terrain Tools/Example Data/Scripts.meta
+    - Assets/Tom's Terrain Tools/Example Data/Scripts/PlayerHoverController.cs
+    - Assets/Tom's Terrain Tools/Example Data/Scripts/PlayerHoverController.cs.meta
+    - Assets/Tom's Terrain Tools/Example Data/Scripts/SimpleSmoothMouseLook.cs
+    - Assets/Tom's Terrain Tools/Example Data/Scripts/SimpleSmoothMouseLook.cs.meta
+    - Assets/Tom's Terrain Tools/Example Data/TTT Example 1.unity
+    - Assets/Tom's Terrain Tools/Example Data/TTT Example 1.unity.meta
+    - Assets/Tom's Terrain Tools/Example Data/TTT Example 1Settings.lighting
+    - Assets/Tom's Terrain Tools/Example Data/TTT Example 1Settings.lighting.meta
+    - Assets/Tom's Terrain Tools/Example Data/TTT Example 2.unity
+    - Assets/Tom's Terrain Tools/Example Data/TTT Example 2.unity.meta
+    - Assets/Tom's Terrain Tools/Example Data/TTT Example 2Settings.lighting
+    - Assets/Tom's Terrain Tools/Example Data/TTT Example 2Settings.lighting.meta
+    - Assets/Tom's Terrain Tools/Example Data/TTT Example 3.unity
+    - Assets/Tom's Terrain Tools/Example Data/TTT Example 3.unity.meta
+    - Assets/Tom's Terrain Tools/Example Data/TTT Example 3Settings.lighting
+    - Assets/Tom's Terrain Tools/Example Data/TTT Example 3Settings.lighting.meta
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources.meta
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources/1.ter
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources/1.ter.meta
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources/1.tgd
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources/1.tgd.meta
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources/2.ter
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources/2.ter.meta
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources/2.tgd
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources/2.tgd.meta
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources/3.ter
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources/3.ter.meta
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources/3.tgd
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources/3.tgd.meta
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources/README.txt
+    - Assets/Tom's Terrain Tools/Example Data/Terragen Sources/README.txt.meta
+    - Assets/Tom's Terrain Tools/Example Data/TerrainExample1.asset
+    - Assets/Tom's Terrain Tools/Example Data/TerrainExample1.asset.meta
+    - Assets/Tom's Terrain Tools/Example Data/TerrainExample2.asset
+    - Assets/Tom's Terrain Tools/Example Data/TerrainExample2.asset.meta
+    - Assets/Tom's Terrain Tools/Example Data/TerrainExample3.asset
+    - Assets/Tom's Terrain Tools/Example Data/TerrainExample3.asset.meta
+    - Assets/Tom's Terrain Tools/README.rtf
+    - Assets/Tom's Terrain Tools/README.rtf.meta
+    - Assets/Tom's Terrain Tools/Scripts.meta
+    - Assets/Tom's Terrain Tools/Scripts/ForceGrassDistanceInEditor.cs
+    - Assets/Tom's Terrain Tools/Scripts/ForceGrassDistanceInEditor.cs.meta
+    - Assets/Tom's Terrain Tools/Scripts/KeepOnSurface.cs
+    - Assets/Tom's Terrain Tools/Scripts/KeepOnSurface.cs.meta
+    - Assets/Tom's Terrain Tools/Scripts/PlaceOnSurfaceAtStart.cs
+    - Assets/Tom's Terrain Tools/Scripts/PlaceOnSurfaceAtStart.cs.meta
+    - Assets/Tom's Terrain Tools/Scripts/SpawnInArea.cs
+    - Assets/Tom's Terrain Tools/Scripts/SpawnInArea.cs.meta
+    - Assets/Tom's Terrain Tools/Scripts/TerrainQualitySettings.cs
+    - Assets/Tom's Terrain Tools/Scripts/TerrainQualitySettings.cs.meta
+    - Assets/Tom's Terrain Tools/Scripts/TreeExplosion.cs
+    - Assets/Tom's Terrain Tools/Scripts/TreeExplosion.cs.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes/Bush5.fbx
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes/Bush5.fbx.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes/Bush7.fbx
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes/Bush7.fbx.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes/Materials.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes/Materials/bush5.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes/Materials/bush5.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes/Materials/bush7.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes/Materials/bush7.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes/Textures.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes/Textures/Bush5.psd
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes/Textures/Bush5.psd.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes/Textures/Bush7.psd
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Bushes/Textures/Bush7.psd.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Grass.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Grass/Fern.psd
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Grass/Fern.psd.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Grass/Grass.psd
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Grass/Grass.psd.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Grass/Weed.psd
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Grass/Weed.psd.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Grass/WhiteFlowers.psd
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Grass/WhiteFlowers.psd.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Materials.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Materials/Forest Floor.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Materials/Forest Floor.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Rocks.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Rocks/Materials.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Rocks/Materials/rockmesh-rockmat.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Rocks/Materials/rockmesh-rockmat.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Rocks/RockMesh.fbx
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Rocks/RockMesh.fbx.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Cliff (Grassy).jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Cliff (Grassy).jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Cliff (Grassy)_normal.png
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Cliff (Grassy)_normal.png.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Cliff (Layered Rock).jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Cliff (Layered Rock).jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Cliff (Layered Rock)_normal.jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Cliff (Layered Rock)_normal.jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_black.png
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_black.png.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_blue.png
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_blue.png.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_cyan.png
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_cyan.png.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_green.png
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_green.png.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_magenta.png
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_magenta.png.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_red.png
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_red.png.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_white.png
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_white.png.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_yellow.png
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Debug/debug_yellow.png.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/DirtGrass.jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/DirtGrass.jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/DirtGrass_normal.jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/DirtGrass_normal.jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Forest Floor.jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Forest Floor.jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Forest Floor_normal.jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Forest Floor_normal.jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Hill).jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Hill).jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Hill)_normal.jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Hill)_normal.jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Meadows).jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Meadows).jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Meadows)_normal.jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Meadows)_normal.jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Meadows2).jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Meadows2).jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Meadows2)_normal.jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Meadows2)_normal.jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Muddy).jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Muddy).jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Muddy)_normal.jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass (Muddy)_normal.jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass&Rock.jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass&Rock.jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass&Rock_normal.jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Grass&Rock_normal.jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Sand (Beach).jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Sand (Beach).jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Sand (Beach)_normal.jpg
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/Sand (Beach)_normal.jpg.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/SingleColor.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/SingleColor/brown_color_tile-2.png
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/SingleColor/brown_color_tile-2.png.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/SingleColor/green_color_tile-1.png
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/SingleColor/green_color_tile-1.png.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/SingleColor/lite_green2_color_tile-4.png
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/SingleColor/lite_green2_color_tile-4.png.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/SingleColor/lite_green_color_tile-3.png
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Textures/SingleColor/lite_green_color_tile-3.png.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Alder.fbx
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Alder.fbx.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/alder-alderbark.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/alder-alderbark.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/alderbranches.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/alderbranches.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/mimosabark.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/mimosabark.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/mimosabranch.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/mimosabranch.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/scotspinetypea-pine
+      needles.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/scotspinetypea-pine
+      needles.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/scotspinetypea-pinetrunk.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/scotspinetypea-pinetrunk.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/scotspinetypeb-pine
+      needles.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/scotspinetypeb-pine
+      needles.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/scotspinetypeb-pinetrunk.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/scotspinetypeb-pinetrunk.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/sycamorebark4.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/sycamorebark4.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/sycamoreleaves5.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/sycamoreleaves5.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/thintree.mat
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Materials/thintree.mat.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Mimosa.fbx
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Mimosa.fbx.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/ScotsPineTypeA.fbx
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/ScotsPineTypeA.fbx.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/ScotsPineTypeB.fbx
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/ScotsPineTypeB.fbx.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Sycamore.fbx
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Sycamore.fbx.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/AlderBark.PSD
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/AlderBark.PSD.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/AlderBranches.psd
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/AlderBranches.psd.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/MimosaBark.PSD
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/MimosaBark.PSD.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/MimosaBranch.psd
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/MimosaBranch.psd.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/ScotsPineTrunk.psd
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/ScotsPineTrunk.psd.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/ScotsPinebranches.psd
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/ScotsPinebranches.psd.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/SycamoreBark4.psd
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/SycamoreBark4.psd.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/SycamoreLeaves5.psd
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/SycamoreLeaves5.psd.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/ThinTree.psd
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/Textures/ThinTree.psd.meta
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/ThinTree.fbx
+    - Assets/Tom's Terrain Tools/Unity Terrain Assets/Trees Ambient-Occlusion/ThinTree.fbx.meta
+    - Assets/_TerrainAutoUpgrade.meta
+    - Assets/_TerrainAutoUpgrade/layer_Grass (Hill)Grass (Hill)_normalb956af97c33fc3d7.terrainlayer
+    - Assets/_TerrainAutoUpgrade/layer_Grass (Hill)Grass (Hill)_normalb956af97c33fc3d7.terrainlayer.meta
+    - Assets/_TerrainAutoUpgrade/layer_Grass (Meadows)Grass (Meadows)_normalb956af97c33fc3d7.terrainlayer
+    - Assets/_TerrainAutoUpgrade/layer_Grass (Meadows)Grass (Meadows)_normalb956af97c33fc3d7.terrainlayer.meta
+    - Assets/_TerrainAutoUpgrade/layer_Grass (Muddy)Grass (Muddy)_normalb956af97c33fc3d7.terrainlayer
+    - Assets/_TerrainAutoUpgrade/layer_Grass (Muddy)Grass (Muddy)_normalb956af97c33fc3d7.terrainlayer.meta
+    - Assets/_TerrainAutoUpgrade/layer_Grass&RockGrass&Rock_normalb956af97c33fc3d7.terrainlayer
+    - Assets/_TerrainAutoUpgrade/layer_Grass&RockGrass&Rock_normalb956af97c33fc3d7.terrainlayer.meta
+    - Assets/_TerrainAutoUpgrade/layer_SandAlbedo3d3aba195e4d26ee.terrainlayer
+    - Assets/_TerrainAutoUpgrade/layer_SandAlbedo3d3aba195e4d26ee.terrainlayer.meta
     - 
-    m_Values: 000000000000000000000000000000000000
+    m_Values: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 

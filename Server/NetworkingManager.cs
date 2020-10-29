@@ -34,7 +34,10 @@ namespace server
 		public TcpListener tcpListener = new TcpListener(40705);
 		public List<Profile> toBeHandledClient = new List<Profile>();
 		public Dictionary<string, Profile> activePeople = new Dictionary<string, Profile>();
-		public List<Packet> toBeHandledPackets = new List<Packet>();
+
+		public Dictionary<string, Classroom> classroomRegister = new Dictionary<string, Classroom>();
+
+		//public List<Packet> toBeHandledPackets = new List<Packet>();
 
 		public bool shuttingDown = false;
 
@@ -48,7 +51,7 @@ namespace server
 				return;
 			}
 			string stringPacket = JsonConvert.SerializeObject(packet);
-			Server.WriteLine("Sending: " + stringPacket);
+			//Server.WriteLine("Sending: " + stringPacket);
 			byte[] bytePacket = UnicodeEncoding.Unicode.GetBytes(stringPacket);
 			byte[] messageLength = BitConverter.GetBytes((Int64)bytePacket.Length);
 
@@ -60,7 +63,7 @@ namespace server
 
 			await client.GetStream().WriteAsync(message, 0, message.Length);
 			//await client.GetStream().WriteAsync(Encoding.Unicode.GetBytes("hello from the other sideee"), 0, 8);
-			Server.WriteLine("Sent. (from sendMessage()) " + message.Length);
+			//Server.WriteLine("Sent. (from sendMessage()) " + message.Length);
 		}
 		public async Task<Packet> readMessageAsync(TcpClient client)
 		{
@@ -80,7 +83,7 @@ namespace server
 			
 			Int64 messageLength = (Int64)BitConverter.ToInt64(byteMessageLength, 0);
 
-			Server.WriteLine("Reading " + messageLength.ToString() + " bytes of data");
+			//Server.WriteLine("Reading " + messageLength.ToString() + " bytes of data");
 
 			assembler.Clear(messageLength);
 
@@ -163,12 +166,13 @@ namespace server
 								{
 									break;
 								}
-								toBeHandledPackets.Add(packet);
+								netIO.toRead[pclient.uuid].Add(packet);
 								Server.WriteLine("Recieved Packet from " + ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
 							}
 							netIO.toDo[pclient.uuid].RemoveAt(0);
 						}
 					}
+					Thread.Sleep(Server.config.loopTimer);
 				}
 				Server.WriteLine("Client Disconnected (Background Packet Read) Thread");
 			}
@@ -198,11 +202,13 @@ namespace server
 						if (netIO.toDo[pclient.uuid].IndexOf(NetworkIO.Operation.Write) == 0)
 						{
 							//Server.WriteLine("Sending packet...");
-							sendMessageAsync(netIO.toWrite[pclient.uuid][0], client);
+							sendMessageAsync(netIO.toWrite[pclient.uuid][netIO.toWrite[pclient.uuid].Count - 1], client);
 							netIO.toDo[pclient.uuid].RemoveAt(0);
+							netIO.toWrite[pclient.uuid].Clear();
 							Server.WriteLine("Sent Packet to " + ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
 						}
 					}
+					//Thread.Sleep(Server.config.loopTimer);
 				}
 				Server.WriteLine("Client Disconnected (Background Packet Recieve) Thread");
 			}
@@ -211,6 +217,17 @@ namespace server
 				Server.WriteLine(e.ToString());
 			}
 
+		}
+		public void BackgroundHandlePacket(Profile pclient)
+		{
+			while (pclient.client.Connected)
+			{
+				if(netIO.toRead[pclient.uuid].Count > 0)
+				{
+					HandlePacket(netIO.toRead[pclient.uuid][0]);
+				}
+				Thread.Sleep(Server.config.loopTimer);
+			}
 		}
 
 		public void NotifyLogin(Profile profile)
@@ -221,8 +238,10 @@ namespace server
 			packet.username = profile.username;
 			packet.password = profile.hashedPassword;
 			packet.permission = profile.permissions;
+			packet.uuid = profile.uuid;
 			netIO.toWrite[profile.uuid].Add(packet);
 			netIO.toDo[profile.uuid].Add(NetworkIO.Operation.Write);
+			//Server.WriteLine(netIO.toWrite[profile.uuid].Count);
 		}
 
 		public void HandlePacket(Packet packet)
@@ -256,23 +275,23 @@ namespace server
 									activePeople[packet.uuid].password = packet.password;
 									activePeople[packet.uuid].loggedIn = true;
 									activePeople[packet.uuid].permissions = table.perTable[packet.username];
-									Server.WriteLine(packet.username + " logged in");
+									//Server.WriteLine(packet.username + " logged in. With permission: " + table.perTable[packet.username]);
 
 									NotifyLogin(activePeople[packet.uuid]);
 								}
 								else
 								{
-									Server.WriteLine("Password is not correct " + packet.password);
+									//Server.WriteLine("Password is not correct " + packet.password);
 									Authenticate(activePeople[packet.uuid]);
 								}
 							}
 							else
 							{
-								Server.WriteLine("Username does not have an entry " + packet.username);
+								//Server.WriteLine("Username does not have an entry " + packet.username);
 								Authenticate(activePeople[packet.uuid]);
 							}
 						}
-						toBeHandledPackets.Remove(packet);
+						netIO.toRead[packet.uuid].RemoveAt(0);
 						break;
 				}
 			}
@@ -281,12 +300,56 @@ namespace server
 				switch (packet.request.request)
 				{
 					case Request.RequestType.CreateClassroom:
+						if(activePeople[packet.uuid].permissions == Permissions.Permission.Teacher || activePeople[packet.uuid].permissions == Permissions.Permission.Principal)
+						{
+							Classroom newClassroom = new Classroom((Classroom.Classtype)packet.classType);
+							newClassroom.connectedPeople.Add(activePeople[packet.uuid]);
+							classroomRegister.Add(newClassroom.classCode, newClassroom);
+							Server.WriteLine("Created Classroom");
+							netIO.toRead[packet.uuid].RemoveAt(0);
+						}
 						break;
 					case Request.RequestType.JoinClassroom:
+						classroomRegister[packet.classCode].connectedPeople.Add(activePeople[packet.uuid]);
+						netIO.toRead[packet.uuid].RemoveAt(0);
 						break;
 					case Request.RequestType.LeaveClassroom:
 						break;
 					case Request.RequestType.Auth:
+						break;
+					case Request.RequestType.ClassCode:
+						foreach(Classroom classroom in classroomRegister.Values)
+						{
+							foreach (Profile profile in classroom.connectedPeople)
+							{
+								if(profile.uuid == packet.uuid)
+								{
+									Packet sendPacket = new Packet();
+									sendPacket.header = Packet.Header.Answer;
+									sendPacket.request.request = Request.RequestType.ClassCode;
+									netIO.toWrite[packet.uuid].Add(sendPacket);
+									netIO.toDo[packet.uuid].Add(NetworkIO.Operation.Write);
+								}
+							}
+						}
+						try
+						{
+							netIO.toRead[packet.uuid].RemoveAt(0);
+						}catch(Exception e)
+						{
+
+						}
+						
+						break;
+					case Request.RequestType.CreateUser:
+						if(activePeople[packet.uuid].permissions == Permissions.Permission.Principal)
+						{
+							table.AddToTable(packet.username, packet.password, (int)packet.permission);
+							IO.StoreAuthTable(table);
+							IO.ReadAuthTable();
+							Server.WriteLine("Created New User");
+							netIO.toRead[packet.uuid].RemoveAt(0);
+						}
 						break;
 				}
 			}
@@ -334,11 +397,14 @@ namespace server
 					Server.WriteLine("Client Connected");
 					Profile profile = new Profile();
 					profile.Setup();
-					profile.uuid = (ConvertToUnixTimestamp(DateTime.Now) + new Random().Next(1000, 9999).ToString());
+					profile.uuid = ConvertToUnixTimestamp(DateTime.Now).ToString() + new Random().Next(1000, 9999).ToString();
 					profile.client = handledClient;
 					netIO.toDo.Add(profile.uuid, new List<NetworkIO.Operation>());
+					netIO.toWrite.Add(profile.uuid, new List<Packet>());
+					netIO.toRead.Add(profile.uuid, new List<Packet>());
 					new Thread(() => BackgroundRead(profile)).Start();
 					new Thread(() => BackgroundWrite(profile)).Start();
+					new Thread(() => BackgroundHandlePacket(profile)).Start();
 					toBeHandledClient.Add(profile);
 				}
 				catch(Exception e)

@@ -52,10 +52,6 @@ namespace server
 				{
 					manager.HandleClient(manager.toBeHandledClient[0]);
 				}
-				if(manager.toBeHandledPackets.Count > 0)
-				{
-					manager.HandlePacket(manager.toBeHandledPackets[0]);
-				}
 				if (Console.KeyAvailable)
 				{
 					ConsoleKeyInfo key = Console.ReadKey(true);
@@ -75,6 +71,7 @@ namespace server
 			Server.WriteLine("Saved Config");
 
 			Server.WriteLine("Server stopped");
+			Environment.Exit(0);
 		}
 
 		public static void GetConfig()

@@ -69,27 +69,19 @@
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
     <Compile Include="Assets\Scripts\Classes\Transform.cs" />
+    <Compile Include="Assets\Scripts\Classes\ByteAssembler.cs" />
     <Compile Include="Assets\Scripts\Classes\Profile.cs" />
     <Compile Include="Assets\Scripts\NetworkingManager.cs" />
     <Compile Include="Assets\Scripts\Classes\Permissions.cs" />
     <Compile Include="Assets\Scripts\Comfort\Login\LoginCreatureComforts.cs" />
     <Compile Include="Assets\Scripts\Classes\NetworkIO.cs" />
-    <Compile Include="Assets\Tom&apos;s Terrain Tools\2DTools\Scripts\Camera2DFollow.cs" />
-    <Compile Include="Assets\Tom&apos;s Terrain Tools\Scripts\KeepOnSurface.cs" />
-    <Compile Include="Assets\Tom&apos;s Terrain Tools\Scripts\PlaceOnSurfaceAtStart.cs" />
-    <Compile Include="Assets\Tom&apos;s Terrain Tools\Scripts\TerrainQualitySettings.cs" />
-    <Compile Include="Assets\Tom&apos;s Terrain Tools\Example Data\Scripts\SimpleSmoothMouseLook.cs" />
-    <Compile Include="Assets\Tom&apos;s Terrain Tools\Scripts\ForceGrassDistanceInEditor.cs" />
-    <Compile Include="Assets\Tom&apos;s Terrain Tools\2DTools\Scripts\CircleMoverSample.cs" />
-    <Compile Include="Assets\Tom&apos;s Terrain Tools\Scripts\TreeExplosion.cs" />
-    <Compile Include="Assets\Tom&apos;s Terrain Tools\Example Data\Scripts\PlayerHoverController.cs" />
-    <Compile Include="Assets\Tom&apos;s Terrain Tools\Scripts\SpawnInArea.cs" />
-    <Compile Include="Assets\Scripts\Classes\ByteAssembler.cs" />
+    <Compile Include="Assets\Scripts\ConfigControllers\StudentConfigController.cs" />
+    <Compile Include="Assets\Scripts\ConfigControllers\TeacherConfigController.cs" />
+    <Compile Include="Assets\Scripts\ConfigControllers\PrincipalConfigController.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
-     <None Include="Assets\Tom&apos;s Terrain Tools\Example Data\Terragen Sources\README.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />

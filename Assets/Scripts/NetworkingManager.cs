@@ -20,6 +20,8 @@ public class NetworkingManager : MonoBehaviour
     public int port = 40705;
     public string hostname = "127.0.0.1";
 
+	public string classCode;
+
 	[SerializeField]
 	public List<Packet> toBeHandledPackets = new List<Packet>();
 
@@ -29,11 +31,20 @@ public class NetworkingManager : MonoBehaviour
 	public NetworkIO netIO;
 
 	[SerializeField]
-	private string lastAttemptedUsername = "username";
+	private string lastAttemptedUsername = "";
 	[SerializeField]
-	private string lastAttemptedPassword = "password";
+	private string lastAttemptedPassword = "";
 
-    public void Connect()
+	private int pollingRate = 300;
+
+	public Classtype classType;
+
+	public enum Classtype
+	{
+		Standard
+	}
+
+	public void Connect()
     {
 		netIO = new NetworkIO();
         profile = new Profile();
@@ -42,6 +53,7 @@ public class NetworkingManager : MonoBehaviour
         Debug.Log("Connected");
 		new Thread(() => BackgroundRead(profile.client)).Start();
 		new Thread(() => BackgroundWrite(profile.client)).Start();
+		//new Thread(() => BackgroundClasscodeUpdate()).Start();
 	}
 
 	public async Task sendMessageAsync(Packet packet, TcpClient client)
@@ -139,6 +151,7 @@ public class NetworkingManager : MonoBehaviour
 						netIO.toDo.RemoveAt(0);
 					}
 				}
+				Thread.Sleep(pollingRate);
 			}
 			Debug.Log("Client Disconnected (Background Packet Recieve) Thread");
 		}
@@ -168,6 +181,7 @@ public class NetworkingManager : MonoBehaviour
 						Debug.Log("Sent Packet to " + ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
 					}
 				}
+				//Thread.Sleep(pollingRate);
 			}
 			Debug.Log("Client Disconnected (Background Packet Recieve) Thread");
 		}
@@ -211,7 +225,7 @@ public class NetworkingManager : MonoBehaviour
 						toSend.uuid = profile.uuid;
 						netIO.toDo.Add(NetworkIO.Operation.Write);
 						netIO.toWrite = toSend;
-						toBeHandledPackets.Remove(packet);
+						toBeHandledPackets.RemoveRange(0, toBeHandledPackets.Count - 1);
 						lastAttemptedUsername = profile.username;
 						lastAttemptedPassword = profile.password;
 					}
@@ -228,15 +242,24 @@ public class NetworkingManager : MonoBehaviour
 					profile.hashedPassword = packet.password;
 					profile.permissions = packet.permission;
 					profile.loggedIn = true;
+					toBeHandledPackets.Clear();
+					Debug.Log("Logged In!");
+					MasterGameManager.stn.UpdateConfig();
 					break;
 				case Request.RequestType.CreateClassroom:
 					break;
 				case Request.RequestType.JoinClassroom:
+
 					break;
 				case Request.RequestType.LeaveClassroom:
 					break;
+				case Request.RequestType.ClassCode:
+					classCode = packet.classCode;
+					toBeHandledPackets.Clear();
+					break;
 			}
 		}
+		//Debug.Log(JsonConvert.SerializeObject(packet));
 		return false;
 	}
 }

@@ -18,5 +18,7 @@ namespace Server.Classes
 		public Dictionary<string, List<Operation>> toDo = new Dictionary<string, List<Operation>>();
 
 		public Dictionary<string, List<Packet>> toWrite = new Dictionary<string, List<Packet>>();
+
+		public Dictionary<string, List<Packet>> toRead = new Dictionary<string, List<Packet>>();
 	}
 }

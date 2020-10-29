@@ -30,8 +30,9 @@ namespace Server.Classes
 
 		public string uuid;
 
-		//Server packet
-		public List<Profile> profile;
+		public int classType;
+
+		public string classCode;
 
 		public Permissions.Permission permission;
 

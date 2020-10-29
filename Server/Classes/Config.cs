@@ -10,5 +10,6 @@ namespace server.Classes
 	{
 		public string storeFile = "/auth.json";
 		public bool enableCommands = true;
+		public int loopTimer = 500;
 	}
 }

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Server.Classes
 {
-	[Serializable]
 	public class Request
 	{
 		public enum RequestType
@@ -14,7 +13,9 @@ namespace Server.Classes
 			CreateClassroom,
 			JoinClassroom,
 			LeaveClassroom,
-			Auth
+			Auth,
+			CreateUser,
+			ClassCode
 		}
 		public RequestType request;
 	}
